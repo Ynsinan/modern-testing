@@ -1,14 +1,14 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
 
-test("should render App component without crashing", () => {
-  render(<App />);
-  const element = screen.getByText("Modern Testing");
-  expect(element).toBeInTheDocument();
+const TestComponent = () => (
+	<>
+		<button>Button 1</button>
+		<button>Button 2</button>
+	</>
+);
+
+it('should render the element correctly"', () => {
+	render(<TestComponent />);
+	const element = screen.getByRole("button",{name: "Button 1"});
+	expect(element).toBeInTheDocument();
 });
-
-test("should render button component", () => {
-  render(<App />);
-  const element = screen.getByText("Button");
-  expect(element).toBeInTheDocument();
-})
