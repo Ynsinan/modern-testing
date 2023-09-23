@@ -1,14 +1,22 @@
 import { render, screen } from "@testing-library/react";
 
-const TestComponent = () => (
-	<>
-		<button>Button 1</button>
-		<button>Button 2</button>
-	</>
+const TestComponent = ({products}) => (
+	<ul>
+    {products.map((product) => (
+      <li key={product.id} onClick={() => {}}>{product.name}</li>
+    ))}
+	</ul>
 );
 
 it('should render the element correctly"', () => {
-	render(<TestComponent />);
-	const element = screen.getByRole("button",{name: "Button 1"});
-	expect(element).toBeInTheDocument();
+  const products = [
+    { id: 1, name: "Product 1" },
+    { id: 2, name: "Product 2" },
+  ];
+  render(<TestComponent products={products} />);
+  //multiple query select
+  const listItems = screen.getAllByRole('listitem');
+  expect(listItems).toHaveLength(products?.length);
+
+
 });
