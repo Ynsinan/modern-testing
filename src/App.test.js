@@ -1,22 +1,18 @@
 import { render, screen } from "@testing-library/react";
 
-const TestComponent = ({products}) => (
-	<ul>
-    {products.map((product) => (
-      <li key={product.id} onClick={() => {}}>{product.name}</li>
-    ))}
-	</ul>
+const TestComponent = ({text}) => (
+  <div>
+    {text && <p>{text}</p>}
+    {!text && <p>text yok</p>}
+  </div>
 );
 
 it('should render the element correctly"', () => {
-  const products = [
-    { id: 1, name: "Product 1" },
-    { id: 2, name: "Product 2" },
-  ];
-  render(<TestComponent products={products} />);
-  //multiple query select
-  const listItems = screen.getAllByRole('listitem');
-  expect(listItems).toHaveLength(products?.length);
+  render(<TestComponent text="test" />);
+  const element = screen.getByText(/test/i);
+  const emptyElement = screen.queryByText(/text yok/i);
 
+  expect(emptyElement).not.toBeInTheDocument();
+  expect(element).toBeInTheDocument();
 
 });
