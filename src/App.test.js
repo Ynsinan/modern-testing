@@ -6,9 +6,7 @@ function MyComponent() {
   return (
     <div>
       <select multiple>
-        <option value="elma">Elma</option>
-        <option value="armut">Armut</option>
-        <option value="muz">Muz</option>
+        <input />
       </select>
     </div>
   );
@@ -18,13 +16,9 @@ it('should wait for loading message to be removed', async () => {
   const user = userEvent.setup();
   render(<MyComponent />);
 
-  const fruits = screen.getByRole('listbox');
+  const inputElement = screen.getByRole('textbox');
+  await user.type(inputElement, 'Hello, World!');
+  expect(inputElement).toHaveValue('Hello, World!');
 
-  await user.selectOptions(fruits, ['Elma']);
-
-  expect(screen.getByRole('option', { name: 'Elma' }).selected).toBe(true);
-
-  await user.deselectOptions(fruits, ['Elma']);
-  expect(screen.getByRole('option', { name: 'Elma' }).selected).toBe(false);
 
 });
