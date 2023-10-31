@@ -1,18 +1,19 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import React, { useState, useEffect } from 'react';
 
-const TestComponent = ({text}) => (
-  <div>
-    {text && <p>{text}</p>}
-    {!text && <p>text yok</p>}
-  </div>
-);
+function MyComponent() {
 
-it('should render the element correctly"', () => {
-  render(<TestComponent text="test" />);
-  const element = screen.getByText(/test/i);
-  const emptyElement = screen.queryByText(/text yok/i);
+  return (
+    <div>
+      <p className='primary-text'>Modern Testing</p>
+    </div>
+  );
+}
 
-  expect(emptyElement).not.toBeInTheDocument();
+it('should wait for loading message to be removed', async () => {
+  render(<MyComponent />);
+  screen.debug();
+  const element = screen.getByText(/Modern Testing/i);
   expect(element).toBeInTheDocument();
 
 });
