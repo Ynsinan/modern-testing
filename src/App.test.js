@@ -3,14 +3,13 @@ import userEvent from '@testing-library/user-event';
 
 function MyComponent() {
 
-  const handleCopy = () => {
-    window.navigator.clipboard.writeText("Hello World");
-  };
-
   return (
     <div>
-      <button onClick={handleCopy}>Copy</button>
-      <input type='text' />
+      <select multiple>
+        <option value="elma">Elma</option>
+        <option value="armut">Armut</option>
+        <option value="muz">Muz</option>
+      </select>
     </div>
   );
 }
@@ -18,15 +17,14 @@ function MyComponent() {
 it('should wait for loading message to be removed', async () => {
   const user = userEvent.setup();
   render(<MyComponent />);
-  
-  await user.keyboard("[tab]");
-  await user.keyboard("[enter]");
 
-  const inputElement = screen.getByRole('textbox');
-  inputElement.focus();
+  const fruits = screen.getByRole('listbox');
 
-  await user.paste();
+  await user.selectOptions(fruits, ['Elma']);
 
-  expect(inputElement).toHaveValue('Hello World');
+  expect(screen.getByRole('option', { name: 'Elma' }).selected).toBe(true);
+
+  await user.deselectOptions(fruits, ['Elma']);
+  expect(screen.getByRole('option', { name: 'Elma' }).selected).toBe(false);
 
 });
