@@ -21,10 +21,13 @@ it('should wait for loading message to be removed', async () => {
   const user = userEvent.setup();
   render(<MyComponent />);
 
- await user.pointer({
-    keys: '[MouseLeft]',
-    target: screen.getByRole('button', { name: /increment/i }),
-  });
-  const headingElement = await screen.findByRole('heading');
-  expect(headingElement).toHaveTextContent('1');
+  const buttonElement = screen.getByRole('button', { name: "Increment" });
+  
+  await user.keyboard("[Tab]");
+  expect(buttonElement).toHaveFocus();
+
+  await user.keyboard("[Enter]");
+  const headingElement = await screen.findByText('1');
+  expect(headingElement).toBeInTheDocument();
+
 });
