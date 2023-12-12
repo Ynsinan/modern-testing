@@ -1,20 +1,48 @@
-import {render, screen} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import React from "react";
+function TestComponent(){
 
-import { Button } from './button';
+}
 
-const randomFunction = jest.fn();
+it("returns undefined by default", () => {
+  const mock = jest.fn();
 
-describe('Button', () => {
-  it("should call onClick Function when clicked", async () => {
-    const user = userEvent.setup();
-    render(<Button onClick={randomFunction}>Click me</Button>);
-    const button = screen.getByRole('button', {name: /click me/i});
-    await user.click(button);
+  let result = mock("foo");
 
-    expect(randomFunction).toHaveBeenCalled();
+  expect(result).toBeUndefined();
+  expect(mock).toHaveBeenCalled();
+  expect(mock).toHaveBeenCalledTimes(1);
+  expect(mock).toHaveBeenCalledWith("foo");
+})
 
+it("mock implementation", () => {
+  const mock = jest.fn(() => "bar");
 
-  }
-  )}
-);
+  expect(mock("foo")).toBe("bar");
+  expect(mock).toHaveBeenCalledWith("foo");
+});
+
+it("mock implementation one time", () => {
+  const mock = jest.fn().mockImplementationOnce(() => "bar");
+
+  expect(mock("foo")).toBe("bar");
+  expect(mock).toHaveBeenCalledWith("foo");
+});
+
+it("mock return value", () => {
+  const mock = jest.fn();
+  mock.mockReturnValue("bar");
+
+  expect(mock("foo")).toBe("bar");
+  expect(mock).toHaveBeenCalledWith("foo");
+});
+
+it("mock promise resolution", async () => {
+  const mock = jest.fn();
+  mock.mockResolvedValue("bar");
+  
+  const result = await mock("foo");
+
+  expect(result).toBe("bar");
+  expect(mock).toHaveBeenCalledWith("foo");
+  await expect(mock("foo")).resolves.toBe("bar");
+});
