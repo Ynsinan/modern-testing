@@ -1,14 +1,12 @@
 const getPosts = async () => {
     return fetch('https://jsonplaceholder.typicode.com/posts')
-    .then((response) => response.data).catch((error) => {
-        return {error: {
-            message:"Data Bulunamadı",
-        }}
-    });
+    .then((response) => response.json())
+    .then((response) => response.data);
 };
 
 const getPost = async (id) => {
     return fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+   .then((response) => response.json())
     .then((response) => response.data);
 }
 
