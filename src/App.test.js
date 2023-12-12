@@ -46,3 +46,13 @@ it("mock promise resolution", async () => {
   expect(mock).toHaveBeenCalledWith("foo");
   await expect(mock("foo")).resolves.toBe("bar");
 });
+
+it("mock promise rejection", async () => {
+    const error = new Error("Error message");
+    const mock = jest.fn();
+    mock.mockRejectedValue(error);
+    mock.mockRejectedValue("return something");
+    await expect(mock("some arg")).rejects.toBe("return something");
+    await expect(mock("some arg")).rejects.toThrowError();
+    await expect(mock("some arg")).rejects.toThrow(error);
+});
