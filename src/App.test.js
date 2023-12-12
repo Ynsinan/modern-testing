@@ -1,24 +1,20 @@
-import { render, screen } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-function MyComponent() {
+import { Button } from './button';
 
-  return (
-    <div>
-      <select multiple>
-        <input />
-      </select>
-    </div>
-  );
-}
+const randomFunction = jest.fn();
 
-it('should wait for loading message to be removed', async () => {
-  const user = userEvent.setup();
-  render(<MyComponent />);
+describe('Button', () => {
+  it("should call onClick Function when clicked", async () => {
+    const user = userEvent.setup();
+    render(<Button onClick={randomFunction}>Click me</Button>);
+    const button = screen.getByRole('button', {name: /click me/i});
+    await user.click(button);
 
-  const inputElement = screen.getByRole('textbox');
-  await user.type(inputElement, 'Hello, World!');
-  expect(inputElement).toHaveValue('Hello, World!');
+    expect(randomFunction).toHaveBeenCalled();
 
 
-});
+  }
+  )}
+);
