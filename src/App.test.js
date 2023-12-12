@@ -1,58 +1,26 @@
-import React from "react";
-function TestComponent(){
+import { MOCK_POSTS } from "./mocks";
+import postService from "./post-service";
+import axios from "axios";
+jest.mock("axios");
 
-}
+describe("<App />", () => {
+  it("should be render bla bla", async () => {
+    const mockResponse = { data: MOCK_POSTS };
+   axios.get.mockResolvedValueOnce(mockResponse);
+   const result = await postService.getPosts();
+   
+   expect(result).toHaveLength(MOCK_POSTS.length);
+   expect(result).toMatchObject(MOCK_POSTS);
+  })
 
-it("returns undefined by default", () => {
-  const mock = jest.fn();
-
-  let result = mock("foo");
-
-  expect(result).toBeUndefined();
-  expect(mock).toHaveBeenCalled();
-  expect(mock).toHaveBeenCalledTimes(1);
-  expect(mock).toHaveBeenCalledWith("foo");
-})
-
-it("mock implementation", () => {
-  const mock = jest.fn(() => "bar");
-
-  expect(mock("foo")).toBe("bar");
-  expect(mock).toHaveBeenCalledWith("foo");
-});
-
-it("mock implementation one time", () => {
-  const mock = jest.fn().mockImplementationOnce(() => "bar");
-
-  expect(mock("foo")).toBe("bar");
-  expect(mock).toHaveBeenCalledWith("foo");
-});
-
-it("mock return value", () => {
-  const mock = jest.fn();
-  mock.mockReturnValue("bar");
-
-  expect(mock("foo")).toBe("bar");
-  expect(mock).toHaveBeenCalledWith("foo");
-});
-
-it("mock promise resolution", async () => {
-  const mock = jest.fn();
-  mock.mockResolvedValue("bar");
-  
-  const result = await mock("foo");
-
-  expect(result).toBe("bar");
-  expect(mock).toHaveBeenCalledWith("foo");
-  await expect(mock("foo")).resolves.toBe("bar");
-});
-
-it("mock promise rejection", async () => {
-    const error = new Error("Error message");
-    const mock = jest.fn();
-    mock.mockRejectedValue(error);
-    mock.mockRejectedValue("return something");
-    await expect(mock("some arg")).rejects.toBe("return something");
-    await expect(mock("some arg")).rejects.toThrowError();
-    await expect(mock("some arg")).rejects.toThrow(error);
+  it("should be reject axios", async () => {
+    const mockResponse = { data: MOCK_POSTS };
+    axios.get.mockRejectedValue(mockResponse);
+    const result = await postService.getPosts();
+    
+    expect(result).toMatchObject({error: {
+      message:"Data Bulunamadı",
+    }});
+   }
+  )
 });
