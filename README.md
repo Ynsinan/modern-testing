@@ -1,71 +1,52 @@
-# Getting Started with Create React App
+# 💉 1. Test Nedir? Neden Test Yazmalıyız?
+
+> Genel olarak bu yazı [Mehmet Pekcanın ](https://www.linkedin.com/in/mehmetpekcann/)videosunu dökümante etmek üzerine olacak ve kendisinin [YouTube üzerinde paylaştığı videoyu](https://www.youtube.com/watch?v=cLH\_m11oEms\&list=PLf3cxVeAm43\_2CINQqyUVQCJ94ycC07uz) izlerken kendi yorumlarımı da katmaya çalışacağım bir yazı olacak. Şimdiden Mehmet Pekcana bu güzel seri için teşekkür ederim. Keyifli okumalar umarım faydası dokunur.
+
+### Test Nedir ?&#x20;
+
+Test, bir sistemi manuel veya otomatik yollarla deneyerek veya değerlendirerek, belirlenmiş gereksinimleri karşıladığının doğrulanması veya beklenen ile gözlenen sonuçlar arasındaki farkların belirlenmesi sürecidir. Yazılım testi ise bir yazılımın sonsuz sayıdaki çalışma alanından, sınırlı sayıda ve uygun şekilde seçilmiş testler ile beklenen davranışlarını karşılamaya yönelik, dinamik olarak yapılan doğrulama faaliyetlerini kapsamaktadır.
+
+Her hangi bir geliştirme sonucu yazdığımız app doğru çalışacak mı ? Her hangi bir yeri bozacak mı ? Şüphelerini yazdığımız testler sonucu öngörerek geliştirme esnasında o bugı kullanıcıya götürmeden tespit edip çözüyoruz. Haliyle yazdığımız kod en stabil ve minimum bug haliyle ortaya çıkıyor.
 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Neden Teste İhtiyaç Duyarız ?
 
-In the project directory, you can run:
+* İnsan hatasını minimuma indirmek
+* Yazdığım kod çalışıyor mu ?&#x20;
+* Yeni eklediğim kod başka bir yeri bozuyor mu ?
+* App'im çok mu yavaş ?&#x20;
+* Kullanıcılar App'imi istediğim gibi kullanabiliyor mu ?&#x20;
+* App'im her browser'da sorunsuz görünüyor mu ?
 
-### `yarn start`
+### Test Çeşitleri
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* <mark style="background-color:green;">**Unit Tests**</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">:</mark> Dinamik test sürecinin ilk aşaması olmakla beraber, hataların erken bulunup düzeltilebilmesi açısından da bu sürecin en önemli aşamasını oluşturur. Mikro ölçekte yapılan bu testte, özel fonksiyonlar veya kod modülleri (fonksiyonlar, veri yapıları, nesneler vb.) test edilir. Bu test, test uzmanlarınca değil programcılar tarafından yapılır ve program kodunun ayrıntıları ile içsel tasarım biçiminin bilinmesi gerekir. Uygulama kodu çok iyi tasarlanmış bir mimaride değilse oldukça zor bir testtir.
+* <mark style="background-color:green;">**Integration Tests :**</mark> Bir uygulamanın farklı bileşenlerinin beraberce uyum içinde çalışıp çalışmadığını sınamak için yapılan bir testtir. Bileşenler, modüller, bağımsız uygulamalar,istemci/sunucu uygulamaları biçiminde olabilirler. Bu tür testlere, özellikle istemci/sunucu uygulamaları ve dağıtık sistemlerin testinde başvurulmaktadır. Bunun yanısıra uygulamaya yeni işlevsel elemanlar ya da program modülleri eklendikçe sürekli test edilmesi işlemine de “Artımsal Tümleyim Testi” adı verilir. Test uzmanları ve/veya programcılar tarafından gerçekleştirilen testlerdir.
+*   <mark style="background-color:green;">**End to End Tests :**</mark> Uçtan uca test, yazılım geliştirme sürecinde bir uygulamanın ürün olarak kullanıldığında işlev ve performans düzeylerini test etmek için kullanılır.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    Uçtan uca testin (veya E2E) amacı, bir ürünün canlı bir ortamda kullanıldığında nasıl performans göstereceği hakkında daha iyi bir fikir edinmektir.
 
-### `yarn test`
+    Bu test şekli, kullanıcının kodla etkileşiminin başlangıcından sonuna kadar kodu incelemeye odaklanır, dolayısıyla “uçtan uca” terimi kullanılır.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    Yazılımı incelemenin ve çalışmalarınızda sorunların nerede ve neden ortaya çıkabileceğini keşfetmenin çok kapsamlı bir yoludur.
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Eğitim İçeriği&#x20;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Genel olarak 3 başlıkta ilerleyeceğiz;&#x20;
 
-### `yarn eject`
+* Unit Tests
+* Integration Test
+* React
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Detaylandırmak gerekirse
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Jest ve React Testing Library
+* Testin Temelleri
+* UI Component Testi
+* Kullanıcı Etkileşimli Component Testi
+* Mocking
+* Dependency Injection
+* Tesing ile Statik Analizler
