@@ -1,6 +1,8 @@
 # 💉 1. Test Nedir? Neden Test Yazmalıyız?
 
-> Genel olarak bu yazı [Mehmet Pekcanın ](https://www.linkedin.com/in/mehmetpekcann/)videosunu dökümante etmek üzerine olacak ve kendisinin [YouTube üzerinde paylaştığı videoyu](https://www.youtube.com/watch?v=cLH\_m11oEms\&list=PLf3cxVeAm43\_2CINQqyUVQCJ94ycC07uz) izlerken kendi yorumlarımı da katmaya çalışacağım bir yazı olacak. Şimdiden Mehmet Pekcana bu güzel seri için teşekkür ederim. Keyifli okumalar umarım faydası dokunur.
+> Merhaba ben Yunus testing konusunda çalışırken aldığım notları paylaşıcam. Genel olarak bu yazı [Mehmet Pekcanın ](https://www.linkedin.com/in/mehmetpekcann/)videosunu dökümante etmek üzerine olacak ve kendisinin [YouTube üzerinde paylaştığı videoyu](https://www.youtube.com/watch?v=cLH_m11oEms\&list=PLf3cxVeAm43_2CINQqyUVQCJ94ycC07uz) izlerken kendi yorumlarımı da katmaya çalışacağım bir yazı olacak. Şimdiden Mehmet Pekcana bu güzel seri için teşekkür ederim. Keyifli okumalar umarım faydası dokunur.\
+> \
+> Bana ulaşmak isterseniz [LinkedIn](https://www.linkedin.com/in/yunusinan/) üzerinden ulaşabilirsiniz.&#x20;
 
 ### Test Nedir ?&#x20;
 
